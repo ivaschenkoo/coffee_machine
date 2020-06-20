@@ -1,4 +1,6 @@
 class CoffeeMachine():
+    """A class describing a coffee machine"""
+
     def __init__(self, water=0, milk=0, beans=0, cups=0, money=0):
         self.water = water
         self.milk = milk
@@ -7,6 +9,7 @@ class CoffeeMachine():
         self.money = money
         self.status = True
         
+    # get the necessary action from the user
     def get_status(self):
         status = input('Write action (buy, fill, take, remaining, exit):\n')
         if status == 'buy':
@@ -22,7 +25,8 @@ class CoffeeMachine():
             self.status = False
         else:
             print('Enter correct status')
-        
+    
+    # show the user the available resources
     def available_resources(self):
         print("The coffee machine has:")
         print(f'{self.water} of water')
@@ -30,7 +34,8 @@ class CoffeeMachine():
         print(f'{self.beans} of coffee beans')
         print(f'{self.cups} of disposable cups')
         print(f'{self.money} of money')
-        
+    
+    # determine what resources are not enough to make coffee
     def not_enough_res(self, amount_water, amount_milk, amount_beans):
         if self.water < amount_water:
             return 'water'
@@ -40,10 +45,8 @@ class CoffeeMachine():
             return 'beans'
         else:
             return 'cups'
-            
-    def remaining(self):
-        available_resources()
-        
+    
+    # offer the user a choice of available purchases
     def buy(self, buy_type):
         if buy_type == 'back':
             self.get_status()
@@ -78,13 +81,15 @@ class CoffeeMachine():
                 print(f'Sorry, not enough {self.not_enough_res(200, 100, 12)}!')
         else:
             print('Enter correct action')
-            
+    
+    # Add the necessary resources   
     def fill(self):
         self.water += int(input('Write how many ml of water do you want to add:\n'))
         self.milk += int(input('Write how many ml of milk do you want to add:\n'))
         self.beans += int(input('Write how many grams of coffee beans do you want to add:\n'))
         self.cups += int(input('Write how many disposable cups of coffee do you want to add:\n'))
     
+    # Give out money
     def take(self):
         print(f'I gave you ${self.money}')
         self.money = 0
